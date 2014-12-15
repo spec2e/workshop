@@ -1,23 +1,7 @@
-'use strict';
+angular.module("workshop", ["ngRoute", "ui.router", "workshop.list", "workshop.details"])
 
-angular.module("workshop", ["ngRoute", "ui.router"])
-
-    .config(function ($stateProvider, $urlRouterProvider) {
-
+    .config(function ($urlRouterProvider) {
         $urlRouterProvider.otherwise("/list");
-
-        $stateProvider
-            .state("list", {
-                url: "/list",
-                controller: "ListCtrl as list",
-                templateUrl: "list.html"
-            })
-            .state("details", {
-                url: "/details/:id",
-                controller: "DetailsCtrl as details",
-                templateUrl: "details.html"
-            })
-
     })
 
     .service("Employees", function() {
@@ -40,32 +24,6 @@ angular.module("workshop", ["ngRoute", "ui.router"])
                 shoeSize: "43",
                 pets: null
             }];
-    })
-
-    .controller("ListCtrl", function (Employees) {
-
-        var list = this;
-        list.persons = Employees.persons;
-
-    })
-
-    .controller("DetailsCtrl", function ($stateParams, Employees) {
-
-        var details = this;
-
-        init();
-
-        function init() {
-            details.person = getDetails($stateParams.id);
-        }
-
-        function getDetails(id) {
-            var ret = null;
-            angular.forEach(Employees.persons, function(person) {
-                if(person.id === id) {
-                    ret = person;
-                }
-            });
-            return ret;
-        }
     });
+
+
