@@ -20,29 +20,8 @@ angular.module("workshop", ["ngRoute", "ui.router"])
 
     })
 
-    .controller("ListCtrl", function () {
-
-        var list = this;
-
-        list.persons = [
-            {
-                id: "1",
-                name: "Søren Pedersen",
-                department: "Udvikler"
-            },
-            {
-                id: "2",
-                name: "Flemming Behrend",
-                department: "Metodemedarbejder"
-            }
-        ];
-
-    })
-
-    .controller("DetailsCtrl", function ($stateParams) {
-
-        var details = this,
-            persons = [
+    .service("Employees", function() {
+        this.persons = [
             {
                 id: "1",
                 name: "Søren Pedersen",
@@ -60,8 +39,19 @@ angular.module("workshop", ["ngRoute", "ui.router"])
                 coffeeType: "Just any coffee",
                 shoeSize: "43",
                 pets: null
-            }
-        ];
+            }];
+    })
+
+    .controller("ListCtrl", function (Employees) {
+
+        var list = this;
+        list.persons = Employees.persons;
+
+    })
+
+    .controller("DetailsCtrl", function ($stateParams, Employees) {
+
+        var details = this;
 
         init();
 
@@ -71,7 +61,7 @@ angular.module("workshop", ["ngRoute", "ui.router"])
 
         function getDetails(id) {
             var ret = null;
-            angular.forEach(persons, function(person) {
+            angular.forEach(Employees.persons, function(person) {
                 if(person.id === id) {
                     ret = person;
                 }
