@@ -9,12 +9,7 @@ angular.module("workshop.list", [])
                 templateUrl: "list/list.html"
             })
 
-    })
-
-    .controller("ListCtrl", function (Employees) {
-
-        var list = this;
-        list.persons = Employees.persons;
-
     });
+
+
 

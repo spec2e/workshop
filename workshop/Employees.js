@@ -1,9 +1,4 @@
-
-angular.module("workshop", ["ngRoute", "ui.router", "workshop.list", "workshop.details"])
-
-    .config(function ($urlRouterProvider) {
-        $urlRouterProvider.otherwise("/list");
-    })
+angular.module("workshop")
 
     .service("Employees", function() {
         this.persons = [
@@ -26,5 +21,3 @@ angular.module("workshop", ["ngRoute", "ui.router", "workshop.list", "workshop.d
                 pets: null
             }];
     });
-
-
