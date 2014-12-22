@@ -1,19 +1,20 @@
 describe("DetailsCtrl controller", function () {
 
-    this.DetailsCtrl = null;
-    this.scope = null;
+    var that = this;
+    that.DetailsCtrl = null;
+    that.scope = null;
 
     beforeEach(module("workshop"));
 
     beforeEach(inject(function ($controller, $rootScope) {
 
-        this.scope = $rootScope.$new();
-        this.DetailsCtrl = $controller('DetailsCtrl as details', {$scope: this.scope});
+        that.scope = $rootScope.$new();
+        that.DetailsCtrl = $controller('DetailsCtrl as details', {$scope: that.scope});
 
     }));
 
     it("should test that the controller is created", function () {
-        expect(this.DetailsCtrl).not.toBe(null);
+        expect(that.DetailsCtrl).not.toBe(null);
     })
 
 });

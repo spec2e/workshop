@@ -1,19 +1,20 @@
 describe("ListCtrl controller", function () {
 
-    this.ListCtrl = null;
-    this.scope = null;
+    var that = this;
+    that.ListCtrl = null;
+    that.scope = null;
 
     beforeEach(module("workshop"));
 
     beforeEach(inject(function ($controller, $rootScope) {
 
-        this.scope = $rootScope.$new();
-        this.ListCtrl = $controller('ListCtrl as list', {$scope: this.scope});
+        that.scope = $rootScope.$new();
+        that.ListCtrl = $controller('ListCtrl as list', {$scope: that.scope});
 
     }));
 
     it("should test that the controller is created", function () {
-        expect(this.ListCtrl).not.toBe(null);
-    })
+        expect(that.ListCtrl).not.toBe(null);
+    });
 
 });
