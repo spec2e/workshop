@@ -20,4 +20,19 @@ angular.module("workshop")
                 shoeSize: "43",
                 pets: null
             }];
+
+        this.getDetails = function(id) {
+            var ret = null;
+            angular.forEach(this.persons, function(person) {
+                if(person.id === id) {
+                    ret = person;
+                }
+            });
+            return ret;
+        };
+
+
+        this.addEmployee = function(employee) {
+            this.persons.push(employee);
+        }
     });

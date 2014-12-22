@@ -1,8 +1,9 @@
 <div>
     <h1>List</h1>
-
+    <button ng-click="list.addEmployee()">Add employee</button>
+    <br/>
+    <br/>
     <div ng-repeat="person in list.persons" ui-sref="details({id: person.id})" class="clickable">
         {{ person.name}}, {{ person.department }}
     </div>
-
 </div>
