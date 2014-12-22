@@ -7,16 +7,7 @@ angular.module("workshop.details")
         init();
 
         function init() {
-            details.person = getDetails($stateParams.id);
+            details.person = Employees.getDetails($stateParams.id);
         }
 
-        function getDetails(id) {
-            var ret = null;
-            angular.forEach(Employees.persons, function(person) {
-                if(person.id === id) {
-                    ret = person;
-                }
-            });
-            return ret;
-        }
     });
