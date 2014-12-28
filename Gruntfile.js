@@ -81,12 +81,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask("build", ["clean", "copy", "concat"]);
 
-    grunt.registerTask("server", function () {
-        grunt.task.run([
-            'connect:livereload',
-            'watch'
-        ]);
-    });
+    grunt.registerTask("server", ["connect:livereload", "watch"]);
 
-}
-;
+
+};
