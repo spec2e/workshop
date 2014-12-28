@@ -1,6 +1,7 @@
 angular.module("workshop")
 
     .service("Employees", function() {
+        console.log("Employees service running 4");
         this.persons = [
             {
                 id: "1",
@@ -22,6 +23,7 @@ angular.module("workshop")
             }];
 
         this.getDetails = function(id) {
+            console.log("details for " + id);
             var ret = null;
             angular.forEach(this.persons, function(person) {
                 if(person.id === id) {
