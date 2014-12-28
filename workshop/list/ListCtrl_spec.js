@@ -17,4 +17,7 @@ describe("ListCtrl controller", function () {
         expect(that.ListCtrl).not.toBe(null);
     });
 
+    it("should tet t¨", function () {
+        expect(true).toBe(true);
+    })
 });
