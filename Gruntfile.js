@@ -10,10 +10,7 @@ module.exports = function (grunt) {
 
     grunt.initConfig({
         buildDir: "build/workshop",
-        version: function() {
-            var date = new Date();
-            return "-" + date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + "-" + date.getHours() + "-" + date.getMinutes() + "-" + date.getSeconds() + "-" + date.getMilliseconds();
-        }(),
+        version: "",
         watch: {
             js: {
                 files: ["workshop/**/*.js"],
@@ -27,7 +24,7 @@ module.exports = function (grunt) {
                 files: ["workshop/**/*.css"],
                 tasks: ["copy"]
             },
-            build: {
+            dev: {
                 files: ["<%= buildDir %>/app.js"],
                 options: {
                     livereload: 35729
@@ -66,10 +63,10 @@ module.exports = function (grunt) {
             }
         },
         uglify: {
-          js: {
-              src: ["<%= buildDir %>/app<%= version %>.js"],
-              dest: "<%= buildDir %>/app<%= version %>.js"
-          }
+            js: {
+                src: ["<%= buildDir %>/app<%= version %>.js"],
+                dest: "<%= buildDir %>/app<%= version %>.js"
+            }
         },
         copy: {
             main: {
@@ -110,9 +107,26 @@ module.exports = function (grunt) {
 
     });
 
-    grunt.registerTask("build", ["clean", "copy", "useminPrepare", "concat", "usemin"]);
+    //grunt.registerTask("build", ["clean", "copy", "useminPrepare", "concat", "usemin"]);
+    grunt.registerTask("build", function () {
 
-    grunt.registerTask("server", ["connect:livereload", "watch"]);
+        var date = new Date(),
+            versionNumber = "-" + date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + "-" + date.getHours() + "-" + date.getMinutes() + "-" + date.getSeconds() + "-" + date.getMilliseconds();
+
+        grunt.config.set("version", versionNumber);
+        grunt.task.run(["clean", "copy", "useminPrepare", "concat", "usemin"]);
+    });
+
+    grunt.registerTask("dev", function () {
+        grunt.log.writeln("new dev task");
+        grunt.config.set("version", "");
+        grunt.task.run(["clean", "copy", "concat"]);
+    });
+
+    grunt.registerTask("server", function () {
+        grunt.config.set("version", "");
+        grunt.task.run(["connect:livereload", "watch"]);
+    });
 
 
 };

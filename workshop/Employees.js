@@ -23,6 +23,7 @@ angular.module("workshop")
             }];
 
         this.getDetails = function(id) {
+            console.log("getting details 4");
             var ret = null;
             angular.forEach(this.persons, function(person) {
                 if(person.id === id) {
